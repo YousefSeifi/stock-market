@@ -223,18 +223,24 @@ export default function Header() {
 
       {/* Slide-in Menu Panel */}
       <div
-        className={`fixed top-0 left-0 h-full w-80 bg-white shadow-xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-full w-80 shadow-xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        } ${isDark ? "bg-gray-900 text-white" : "bg-white text-black"}`}
       >
         <div className="flex flex-col h-full">
           {/* Header with Close Button */}
-          <div className="flex items-center justify-between px-6 py-4 border-b">
+          <div
+            className={`flex items-center justify-between px-6 py-4 border-b ${
+              isDark ? "border-gray-700" : "border-gray-200"
+            }`}
+          >
             <Logo />
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-2 hover:bg-gray-100 rounded-md"
-            >
+              <button
+                onClick={() => setIsOpen(false)}
+                className={`p-2 rounded-md ${
+                  isDark ? "hover:bg-gray-800" : "hover:bg-gray-100"
+                }`}
+              >
               <X />
             </button>
           </div>

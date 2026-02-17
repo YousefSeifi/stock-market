@@ -59,8 +59,8 @@ export default function ProductCategoryNav() {
       data-testid="MainNavigation"
       className="w-full border-b relative"
     >
-      <div className="container mx-auto px-4">
-        <ul className="flex items-center space-x-1 relative">
+      <div className="container mx-auto px-4 max-[1440px]:overflow-x-auto">
+        <ul className="flex items-center space-x-1 relative w-max">
           {/* All Categories */}
           <li
             className="relative group"
