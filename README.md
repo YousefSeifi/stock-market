@@ -1,0 +1,108 @@
+# 📘 README.md
+
+# 🏪 StockX‑Style Navigation & Mega Menu  
+A fully interactive, responsive navigation header inspired by **StockX.com**, built with:
+
+- **Next.js 13+ (App Router)**
+- **Tailwind CSS**
+- **next-themes** for Light/Dark Mode
+- Modern responsive UX patterns
+- Accessible HTML & interactive behavior
+
+🧩 This project focuses on building a **highly detailed navigation component** that closely mimics the structure and interactivity of StockX’s header and product category architecture.
+
+---
+## 🚀 Features Implemented
+---
+
+### ✅ 4. Floating Underline
+
+Nav items include a **floating red underline indicator**, similar to StockX, that animates under the active item on hover.
+
+---
+
+### ✅ 5. Light / Dark Mode Toggle
+
+Implemented using:
+
+- `next-themes`
+- A custom toggle component
+- Works globally with Tailwind `dark:` classes
+
+✔ Switches colors  
+✔ Icons react to the theme  
+✔ No flash on initial load
+
+---
+
+### ✅ 6. Responsive Design
+
+| Breakpoint | Behavior |
+|------------|----------|
+| **Desktop (lg+)** | Horizontal nav with hover menus |
+| **Tablet (md)** | Simplified nav with icons |
+| **Mobile (sm)** | Slide‑in sidebar navigation panel |
+
+Mobile uses an overlay backdrop and a slide‑in panel for navigation.
+
+---
+
+## 📦 Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| `Next.js 13+` | React framework |
+| `TailwindCSS` | Utility‑first styling |
+| `next-themes` | Dark/Light theme system |
+| `React` | Interactivity & UI logic |
+| `lucide-react` | Icon library |
+
+---
+
+## 🗂 Project Structure
+
+```
+src/
+├─ app/
+│  ├─ layout.jsx
+│  ├─ page.jsx
+│  ├─ globals.css
+│  └─ Providers.jsx
+├─ components/
+│  ├─ ui/
+│  │  └─ Header.jsx
+│  ├─ navigation/
+│  │  ├─ ProductCategoryNav.jsx
+│  │  ├─ BrandNavigation.jsx
+│  │  ├─ MegaMenu.jsx
+│  │  ├─ NewNavigation.jsx
+│  │  └─ TrendingNavigation.jsx
+│  └─ buttons/
+│     ├─ ArrowIcon.jsx
+│     ├─ Logo.jsx
+│     └─ ThemeToggle.jsx
+├─ tailwind.config.js
+└─ postcss.config.mjs
+```
+
+---
+
+## 🛠 How to Use / Run
+
+### 📌 Install dependencies
+
+```sh
+npm install
+```
+
+### 📌 Start the development server
+
+```sh
+npm run dev
+```
+
+Serving at http://localhost:3000 (or another port)
+
+---
+
+## 🧠 Key Code Concep
