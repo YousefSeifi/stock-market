@@ -1,41 +1,237 @@
-export default function SignUpPage() {
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+
+export default function AuthPage() {
+  // for signup
+  const [signupEmail, setSignupEmail] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
+  // for login
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const [activeTab, setActiveTab] = useState("signup");
+  const [showPassword, setShowPassword] = useState(false);
+
+  // handleSignup
   const handleSignup = async (e) => {
     e.preventDefault();
 
     const res = await fetch("/api/signup", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: signupEmail,
+        password: signupPassword,
+      }),
     });
 
     if (res.ok) {
-      alert("User created!");
+      alert("Signup successful!");
+    } else {
+      alert("Signup failed");
+    }
+  };
+
+  // handleLogin
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: loginEmail,
+        password: loginPassword,
+      }),
+    });
+
+    if (res.ok) {
+      window.location.href = "/dashboard";
+    } else {
+      alert("Login failed");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <form className="w-96 p-6 bg-white shadow-xl rounded-xl space-y-4">
-        <h1 className="text-2xl font-bold">Login</h1>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+        {/* Tabs */}
+        <div className="flex border-b mb-6">
+          <button
+            onClick={() => setActiveTab("signup")}
+            className={`flex-1 py-2 text-sm font-semibold transition ${
+              activeTab === "signup"
+                ? "border-b-2 border-black text-black"
+                : "text-gray-400"
+            }`}
+          >
+            Sign Up
+          </button>
 
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full border p-2 rounded"
-        />
+          <button
+            onClick={() => setActiveTab("login")}
+            className={`flex-1 py-2 text-sm font-semibold transition ${
+              activeTab === "login"
+                ? "border-b-2 border-black text-black"
+                : "text-gray-400"
+            }`}
+          >
+            Log In
+          </button>
+        </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full border p-2 rounded"
-        />
+        {/* SIGN UP FORM */}
+        {activeTab === "signup" && (
+          <form onSubmit={handleSignup} className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <Input label="First Name" type="text" />
+              <Input label="Last Name" type="text" />
+            </div>
 
-        <button className="w-full bg-green-600 text-white py-2 rounded">
-          Login
-        </button>
-      </form>
+            <Input
+              label="Email Address"
+              type="email"
+              value={signupEmail}
+              onChange={(e) => setSignupEmail(e.target.value)}
+            />
+
+            <div className="relative">
+              <Input
+                label="Password"
+                value={signupPassword}
+                onChange={(e) => setSignupPassword(e.target.value)}
+                type={showPassword ? "text" : "password"}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-3 text-gray-400 text-sm"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
+
+            <p className="text-xs text-gray-500">
+              At least 12 characters, 1 uppercase letter, 1 number & 1 symbol
+            </p>
+
+            {/* Terms */}
+            <div className="flex items-start gap-2 text-xs text-gray-600">
+              <input type="checkbox" className="mt-1" />
+              <p>
+                I agree to the
+                <Link href="#" className="underline">
+                  Terms
+                </Link>
+                and
+                <Link href="#" className="underline">
+                  Privacy Policy
+                </Link>
+              </p>
+            </div>
+
+            <button className="w-full bg-black text-white py-3 rounded-xl hover:opacity-90 transition">
+              Sign Up
+            </button>
+
+            {/* Divider */}
+            <Divider />
+
+            <SocialButtons />
+          </form>
+        )}
+
+        {/* LOGIN FORM */}
+        {activeTab === "login" && (
+          <form onSubmit={handleLogin} className="space-y-4">
+            <Input label="Email Address" type="email" />
+
+            <div className="relative">
+              <Input
+                label="Password"
+                type={showPassword ? "text" : "password"}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-3 text-gray-400 text-sm"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
+
+            <div className="text-right">
+              <Link href="#" className="text-xs underline">
+                Forgot Password?
+              </Link>
+            </div>
+
+            <button className="w-full bg-black text-white py-3 rounded-xl hover:opacity-90 transition">
+              Log In
+            </button>
+
+            <Divider />
+
+            <SocialButtons />
+          </form>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ----------------- Reusable Components ---------------- */
+
+function Input({ label, type }) {
+  return (
+    <div className="relative">
+      <input
+        type={type}
+        required
+        placeholder=" "
+        className="peer w-full border border-gray-300 rounded-xl px-4 pt-5 pb-2 text-sm focus:outline-none focus:border-black"
+      />
+      <label
+        className="absolute left-4 top-2 text-xs text-gray-500 transition-all 
+        peer-placeholder-shown:top-4 
+        peer-placeholder-shown:text-sm 
+        peer-placeholder-shown:text-gray-400 
+        peer-focus:top-2 
+        peer-focus:text-xs"
+      >
+        {label}
+      </label>
+    </div>
+  );
+}
+
+function Divider() {
+  return (
+    <div className="flex items-center gap-3 my-4">
+      <div className="flex-1 h-px bg-gray-300" />
+      <span className="text-xs text-gray-400">OR</span>
+      <div className="flex-1 h-px bg-gray-300" />
+    </div>
+  );
+}
+
+function SocialButtons() {
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      <button className="border rounded-xl py-2 text-sm hover:bg-gray-50">
+        Google
+      </button>
+      <button className="border rounded-xl py-2 text-sm hover:bg-gray-50">
+        Apple
+      </button>
+      <button className="border rounded-xl py-2 text-sm hover:bg-gray-50">
+        Facebook
+      </button>
+      <button className="border rounded-xl py-2 text-sm hover:bg-gray-50">
+        Twitter
+      </button>
     </div>
   );
 }

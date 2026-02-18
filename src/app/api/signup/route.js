@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 
-let users = []; // فقط برای تست
+let users = []; 
 
 export async function POST(req) {
   const { email, password } = await req.json();
