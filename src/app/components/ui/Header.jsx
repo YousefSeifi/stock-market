@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Search, Menu, X, Bell } from "lucide-react";
 import Logo from "../buttons/Logo";
 import MegaMenu from "../navigation/MegaMenu";
@@ -51,6 +51,25 @@ export default function Header() {
   // }
 
   // const isDark = theme === "dark";
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(min-width: 1024px)");
+
+    const handleChange = () => {
+      if (mq.matches) setIsOpen(false);
+    };
+
+    handleChange();
+    if (mq.addEventListener) mq.addEventListener("change", handleChange);
+    else mq.addListener(handleChange);
+
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener("change", handleChange);
+      else mq.removeListener(handleChange);
+    };
+  }, []);
+
   const handleMouseEnter = (itemName) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -229,10 +248,14 @@ export default function Header() {
       )}
 
       {/* Slide-in Menu Panel */}
-      <div className="fixed top-0 left-0 h-full w-80 shadow-xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-800">
+      <div
+        className={`fixed top-0 left-0 h-full w-80 shadow-xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out bg-white text-black dark:bg-gray-900 dark:text-white ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
         <div className="flex flex-col h-full">
           {/* Header with Close Button */}
-          <div className="flex items-center justify-between px-6 py-4 border-b hover:bg-gray-100 dark:hover:bg-gray-800">
+          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800">
             <Logo />
             <button
               onClick={() => setIsOpen(false)}
@@ -250,7 +273,7 @@ export default function Header() {
                 {item.dropdown ? (
                   <div className="space-y-2">
                     <div className="font-medium text-lg">{item.name}</div>
-                    <div className="pl-4 space-y-2 border-l-2 border-gray-200">
+                    <div className="pl-4 space-y-2 border-l-2 border-gray-200 dark:border-gray-700">
                       {item.dropdown.map((dropdownItem) => (
                         <Link
                           key={dropdownItem.name}
@@ -276,11 +299,11 @@ export default function Header() {
             ))}
 
             {/* User Actions */}
-            <div className="pt-4 border-t">
+            <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
               {isLoggedIn ? (
                 <Link
                   href="/profile"
-                  className="block px-4 py-2 border rounded-md hover:bg-gray-100 text-center"
+                  className="block px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-center"
                   onClick={() => setIsOpen(false)}
                 >
                   Profile
@@ -289,7 +312,7 @@ export default function Header() {
                 <div className="flex flex-col gap-2">
                   <Link
                     href="/login"
-                    className="text-center px-4 py-2 border rounded-md hover:bg-gray-100"
+                    className="text-center px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
                     onClick={() => setIsOpen(false)}
                   >
                     Login

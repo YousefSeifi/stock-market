@@ -21,7 +21,7 @@ export default function BannerCarousel() {
         className="rounded-xl overflow-hidden"
       >
         <SwiperSlide>
-          <div className="relative w-full h-30 sm:h-75 md:h-50">
+          <div className="relative w-full h-40 sm:h-60 md:h-80 lg:h-96">
             <Image
               src="/images/baner1.jpg"
               alt="Crocs LEGO Red Brick Clog"
@@ -33,7 +33,7 @@ export default function BannerCarousel() {
         </SwiperSlide>
 
         <SwiperSlide>
-          <div className="relative w-full h-30 sm:h-75 md:h-50">
+          <div className="relative w-full h-40 sm:h-60 md:h-80 lg:h-96">
             <Image
               src="/images/baner2.jpg"
               alt="Crocs LEGO Red Brick Clog"
