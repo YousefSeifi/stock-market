@@ -4,8 +4,55 @@ import { useState } from "react";
 import Link from "next/link";
 
 export default function AuthPage() {
+  // for signup
+  const [signupEmail, setSignupEmail] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
+  // for login
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
   const [activeTab, setActiveTab] = useState("signup");
   const [showPassword, setShowPassword] = useState(false);
+
+  // handleSignup
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: signupEmail,
+        password: signupPassword,
+      }),
+    });
+
+    if (res.ok) {
+      alert("Signup successful!");
+    } else {
+      alert("Signup failed");
+    }
+  };
+
+  // handleLogin
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: loginEmail,
+        password: loginPassword,
+      }),
+    });
+
+    if (res.ok) {
+      window.location.href = "/dashboard";
+    } else {
+      alert("Login failed");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
@@ -37,17 +84,24 @@ export default function AuthPage() {
 
         {/* SIGN UP FORM */}
         {activeTab === "signup" && (
-          <form className="space-y-4">
+          <form onSubmit={handleSignup} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <Input label="First Name" type="text" />
               <Input label="Last Name" type="text" />
             </div>
 
-            <Input label="Email Address" type="email" />
+            <Input
+              label="Email Address"
+              type="email"
+              value={signupEmail}
+              onChange={(e) => setSignupEmail(e.target.value)}
+            />
 
             <div className="relative">
               <Input
                 label="Password"
+                value={signupPassword}
+                onChange={(e) => setSignupPassword(e.target.value)}
                 type={showPassword ? "text" : "password"}
               />
               <button
@@ -91,7 +145,7 @@ export default function AuthPage() {
 
         {/* LOGIN FORM */}
         {activeTab === "login" && (
-          <form className="space-y-4">
+          <form onSubmit={handleLogin} className="space-y-4">
             <Input label="Email Address" type="email" />
 
             <div className="relative">

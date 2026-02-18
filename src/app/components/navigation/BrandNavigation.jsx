@@ -91,7 +91,7 @@ export default function BrandNavigation() {
           </div>
 
           {/* Top Brands */}
-          <div>
+          <section>
             <h2 className="text-lg font-semibold mb-4">Top Brands</h2>
 
             <ul className="grid grid-cols-2 gap-3">
@@ -106,10 +106,10 @@ export default function BrandNavigation() {
                 </li>
               ))}
             </ul>
-          </div>
+          </section>
 
           {/* Trending Brands */}
-          <div>
+          <section>
             <h2 className="text-lg font-semibold mb-4">Trending Brands</h2>
 
             <ul className="grid grid-cols-2 gap-3">
@@ -124,7 +124,7 @@ export default function BrandNavigation() {
                 </li>
               ))}
             </ul>
-          </div>
+          </section>
         </div>
       </div>
     </div>

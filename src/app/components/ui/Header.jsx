@@ -5,7 +5,7 @@ import { useState, useRef } from "react";
 import { Search, Menu, X, Bell } from "lucide-react";
 import Logo from "../buttons/Logo";
 import MegaMenu from "../navigation/MegaMenu";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
 
 const menuItems = [
   { name: "News", path: "/news" },
@@ -40,8 +40,17 @@ export default function Header() {
   const [isLoggedIn] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const timeoutRef = useRef(null);
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
+  // const { theme } = useTheme();
+  // const [mounted, setMounted] = useState(false);
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
+
+  // if (!mounted) {
+  //   return null; // جلوگیری از hydration mismatch
+  // }
+
+  // const isDark = theme === "dark";
   const handleMouseEnter = (itemName) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -86,8 +95,8 @@ export default function Header() {
           <ul className="flex gap-6">
             {menuItems.map((item) => (
               <li
-                key={item.name}         
-                className={`relative ${activeDropdown === item.name ? `z-50 shadow-xl ${isDark ? "bg-gray-800" : "bg-white"}` :               ""}`}
+                key={item.name}
+                className="relative z-50 shadow-xl hover:bg-gray-100 dark:hover:bg-gray-800"
                 onMouseEnter={() =>
                   item.dropdown && handleMouseEnter(item.name)
                 }
@@ -113,8 +122,8 @@ export default function Header() {
                     </button>
 
                     {activeDropdown === item.name && (
-                      <div                        
-                        className={`absolute top-full right-0 mt-2 w-48 border rounded-md shadow-lg py-2 z-50 ${isDark ? "bg-gray-800 text-white" : "bg-white text-black"}`}
+                      <div
+                        className="absolute top-full right-0 mt-2 w-48 border rounded-md shadow-lg py-2 z-50 hover:bg-gray-100 dark:hover:bg-gray-800"
                         onMouseEnter={() => {
                           if (timeoutRef.current)
                             clearTimeout(timeoutRef.current);
@@ -125,9 +134,7 @@ export default function Header() {
                           <Link
                             key={dropdownItem.name}
                             href={dropdownItem.path}
-                            className={`block px-4 py-2 text-sm hover:text-green-600 ${
-                              isDark ? "hover:bg-gray-700" : "hover:bg-gray-100"
-                            }`}
+                            className="block px-4 py-2 text-sm hover:text-green-600 dark:hover:bg-gray-800"
                             onClick={() => setActiveDropdown(null)}
                           >
                             {dropdownItem.name}
@@ -222,25 +229,15 @@ export default function Header() {
       )}
 
       {/* Slide-in Menu Panel */}
-      <div
-        className={`fixed top-0 left-0 h-full w-80 shadow-xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } ${isDark ? "bg-gray-900 text-white" : "bg-white text-black"}`}
-      >
+      <div className="fixed top-0 left-0 h-full w-80 shadow-xl z-50 lg:hidden transform transition-transform duration-300 ease-in-out hover:bg-gray-100 dark:hover:bg-gray-800">
         <div className="flex flex-col h-full">
           {/* Header with Close Button */}
-          <div
-            className={`flex items-center justify-between px-6 py-4 border-b ${
-              isDark ? "border-gray-700" : "border-gray-200"
-            }`}
-          >
+          <div className="flex items-center justify-between px-6 py-4 border-b hover:bg-gray-100 dark:hover:bg-gray-800">
             <Logo />
-              <button
-                onClick={() => setIsOpen(false)}
-                className={`p-2 rounded-md ${
-                  isDark ? "hover:bg-gray-800" : "hover:bg-gray-100"
-                }`}
-              >
+            <button
+              onClick={() => setIsOpen(false)}
+              className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
               <X />
             </button>
           </div>

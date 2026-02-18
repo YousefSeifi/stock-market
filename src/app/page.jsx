@@ -1,8 +1,7 @@
-// import Image from "next/image";
-// import Link from "next/link";
-
 import Header from "./components/ui/Header";
 import { ThemeToggle } from "./components/buttons/ThemeToggle";
+import Footer from "./components/ui/Footer";
+import  BannerCarousel  from "./components/layout/BannerCarousel.jsx";
 
 const Home = () => {
   return (
@@ -11,9 +10,12 @@ const Home = () => {
       <div className="hidden lg:block fixed top-145 left-3">
         <ThemeToggle />
       </div>
+      <main>
+        <BannerCarousel />
+      </main>
+      <Footer />
     </div>
   );
 };
 
 export default Home;
-

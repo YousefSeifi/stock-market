@@ -22,15 +22,15 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    /* --foreground: #ededed; */
   }
 }
 
-/* در global CSS یا Tailwind config */
 ul::-webkit-scrollbar {
-  display: none; /* فقط برای Webkit */
+  display: none; /* Webkit */
 }
 ul {
-  -ms-overflow-style: none; /* برای IE و Edge */
-  scrollbar-width: none; /* برای Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
+

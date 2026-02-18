@@ -1,4 +1,3 @@
-// app/dashboard/page.jsx
 import React from "react";
 
 export default function DashboardPage() {

@@ -1,4 +1,20 @@
 export default function SignUpPage() {
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (res.ok) {
+      alert("User created!");
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <form className="w-96 p-6 bg-white shadow-xl rounded-xl space-y-4">
