@@ -6,7 +6,7 @@ export async function POST(req) {
   // Extract email and password from the request body
   const { email, password } = await req.json();
 
-  // fetch the user from a database.
+  // fetch the user from a database
   const fakeUser = {
     id: 1,
     email: "test@gmail.com",
