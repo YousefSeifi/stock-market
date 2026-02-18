@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import { Search, Menu, X, Bell } from "lucide-react";
 import Logo from "../buttons/Logo";
 import MegaMenu from "../navigation/MegaMenu";
-// import { useTheme } from "next-themes";
 
 const menuItems = [
   { name: "News", path: "/news" },
@@ -40,18 +39,6 @@ export default function Header() {
   const [isLoggedIn] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const timeoutRef = useRef(null);
-  // const { theme } = useTheme();
-  // const [mounted, setMounted] = useState(false);
-  // useEffect(() => {
-  //   setMounted(true);
-  // }, []);
-
-  // if (!mounted) {
-  //   return null; // جلوگیری از hydration mismatch
-  // }
-
-  // const isDark = theme === "dark";
-
   useEffect(() => {
     if (typeof window === "undefined") return;
     const mq = window.matchMedia("(min-width: 1024px)");
@@ -65,7 +52,8 @@ export default function Header() {
     else mq.addListener(handleChange);
 
     return () => {
-      if (mq.removeEventListener) mq.removeEventListener("change", handleChange);
+      if (mq.removeEventListener)
+        mq.removeEventListener("change", handleChange);
       else mq.removeListener(handleChange);
     };
   }, []);
@@ -85,14 +73,14 @@ export default function Header() {
 
   return (
     <header className="border-b font-medium">
-      <nav className="flex items-center px-6 py-4 w-full">
+      <nav className="flex items-center px-6 py-4 w-full ">
         {/* Left Section: Hamburger (left) + Logo */}
         <div className="flex items-center gap-4">
           {/* Hamburger - left side for mobile & tablet (under 768: left, 768+: left) */}
           <button
             className="lg:hidden"
             onClick={() => setIsOpen(!isOpen)}
-            aria-label="منو"
+            aria-label="menu"
           >
             {isOpen ? <X /> : <Menu />}
           </button>
@@ -111,11 +99,18 @@ export default function Header() {
 
         {/* Desktop Menu - hidden on mobile, visible from lg breakpoint */}
         <div className="hidden lg:flex items-center gap-8 ml-auto">
-          <ul className="flex gap-6">
+          <ul className="flex gap-6 bg-white text-black not-dark">
             {menuItems.map((item) => (
               <li
                 key={item.name}
-                className="relative z-50 shadow-xl hover:bg-gray-100 dark:hover:bg-gray-800"
+                className={`relative z-50 shadow-xl hover:bg-gray-100 ${
+                  item.name !== "News" &&
+                  item.name !== "About" &&
+                  item.name !== "Help" &&
+                  item.name !== "Sell"
+                    ? "dark:hover:bg-gray-800"
+                    : ""
+                }`}
                 onMouseEnter={() =>
                   item.dropdown && handleMouseEnter(item.name)
                 }
@@ -123,7 +118,7 @@ export default function Header() {
               >
                 {item.dropdown ? (
                   <>
-                    <button className="hover:text-green-600 transition flex items-center gap-1">
+                    <button className=" hover:text-green-600 transition flex items-center gap-1">
                       {item.name}
                       <svg
                         className={`w-4 h-4 transition-transform ${activeDropdown === item.name ? "rotate-180" : ""}`}
@@ -141,8 +136,12 @@ export default function Header() {
                     </button>
 
                     {activeDropdown === item.name && (
-                      <div
-                        className="absolute top-full right-0 mt-2 w-48 border rounded-md shadow-lg py-2 z-50 hover:bg-gray-100 dark:hover:bg-gray-800"
+                      <div           
+                        className={`absolute top-full right-0 mt-2 w-48 border rounded-md shadow-lg py-2 z-50 hover:bg-gray-100 ${
+                          item.name !== "About" && item.name !== "Sell"
+                            ? "dark:hover:bg-gray-800"
+                            : ""
+                        }`}
                         onMouseEnter={() => {
                           if (timeoutRef.current)
                             clearTimeout(timeoutRef.current);
@@ -152,8 +151,12 @@ export default function Header() {
                         {item.dropdown.map((dropdownItem) => (
                           <Link
                             key={dropdownItem.name}
-                            href={dropdownItem.path}
-                            className="block px-4 py-2 text-sm hover:text-green-600 dark:hover:bg-gray-800"
+                            href={dropdownItem.path}                       
+                            className={`block px-4 py-2 text-sm hover:text-green-600 ${
+                              item.name !== "About" && item.name !== "Sell"
+                                ? "dark:hover:bg-gray-800"
+                                : ""
+                            }`}
                             onClick={() => setActiveDropdown(null)}
                           >
                             {dropdownItem.name}
