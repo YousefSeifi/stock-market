@@ -2,9 +2,15 @@
 const nextConfig = {
   /* config options here */
   images: {
-    domains: ["images.stockx.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.dummyjson.com",
+        pathname: "/**",
+      },
+    ],
   },
-  // plugins: [require("@tailwindcss/line-clamp")],
 };
 
+// module.exports = nextConfig;
 export default nextConfig;

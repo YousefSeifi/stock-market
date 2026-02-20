@@ -43,3 +43,7 @@ export async function POST(req) {
 
   return response;
 }
+
+
+// src > app > api > login > route.js 
+// src > app > api > siginup > route.js 
