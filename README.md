@@ -1,6 +1,7 @@
 # 📘 README.md
 
-# 🏪 StockX‑Style Navigation & Mega Menu  
+# 🏪 StockX‑Style Navigation & Mega Menu
+
 A fully interactive, responsive navigation header inspired by **StockX.com**, built with:
 
 - **Next.js 13+ (App Router)**
@@ -12,7 +13,9 @@ A fully interactive, responsive navigation header inspired by **StockX.com**, bu
 🧩 This project focuses on building a **highly detailed navigation component** that closely mimics the structure and interactivity of StockX’s header and product category architecture.
 
 ---
+
 ## 🚀 Features Implemented
+
 ---
 
 ### ✅ 4. Floating Underline
@@ -37,11 +40,11 @@ Implemented using:
 
 ### ✅ 6. Responsive Design
 
-| Breakpoint | Behavior |
-|------------|----------|
-| **Desktop (lg+)** | Horizontal nav with hover menus |
-| **Tablet (md)** | Simplified nav with icons |
-| **Mobile (sm)** | Slide‑in sidebar navigation panel |
+| Breakpoint        | Behavior                          |
+| ----------------- | --------------------------------- |
+| **Desktop (lg+)** | Horizontal nav with hover menus   |
+| **Tablet (md)**   | Simplified nav with icons         |
+| **Mobile (sm)**   | Slide‑in sidebar navigation panel |
 
 Mobile uses an overlay backdrop and a slide‑in panel for navigation.
 
@@ -49,13 +52,13 @@ Mobile uses an overlay backdrop and a slide‑in panel for navigation.
 
 ## 📦 Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| `Next.js 13+` | React framework |
-| `TailwindCSS` | Utility‑first styling |
-| `next-themes` | Dark/Light theme system |
-| `React` | Interactivity & UI logic |
-| `lucide-react` | Icon library |
+| Technology     | Purpose                  |
+| -------------- | ------------------------ |
+| `Next.js 13+`  | React framework          |
+| `TailwindCSS`  | Utility‑first styling    |
+| `next-themes`  | Dark/Light theme system  |
+| `React`        | Interactivity & UI logic |
+| `lucide-react` | Icon library             |
 
 ---
 
@@ -67,20 +70,55 @@ src/
 │  ├─ layout.jsx
 │  ├─ page.jsx
 │  ├─ globals.css
-│  └─ Providers.jsx
+│  ├─ Providers.jsx
+│  │
+│  ├─ login/
+│  │   └─ page.jsx
+│  │
+│  ├─ signup/
+│  │   └─ page.jsx
+│  │
+│  └─ products/
+│      └─ [id]/
+│          ├─ page.jsx
+│          ├─ loading.jsx
+│          ├─ error.jsx
+│          ├─ not-found.jsx
+│          ├─ AccordionSection.jsx
+│          ├─ BuySection.jsx
+│          ├─ ProductBreadcrumb.jsx
+│          ├─ ProductClient.jsx
+│          ├─ ProductImageGallery.jsx
+│          ├─ SizeSelector.jsx
+│          └─ UtilityButtons.jsx
+│         
 ├─ components/
 │  ├─ ui/
-│  │  └─ Header.jsx
+│  │   ├─ Header.jsx
+│  │   └─ Footer.jsx       
+│  │
 │  ├─ navigation/
-│  │  ├─ ProductCategoryNav.jsx
-│  │  ├─ BrandNavigation.jsx
-│  │  ├─ MegaMenu.jsx
-│  │  ├─ NewNavigation.jsx
-│  │  └─ TrendingNavigation.jsx
-│  └─ buttons/
-│     ├─ ArrowIcon.jsx
-│     ├─ Logo.jsx
-│     └─ ThemeToggle.jsx
+│  │   ├─ BrandNavigation.jsx
+│  │   ├─ MegaMenu.jsx
+│  │   ├─ NewNavigation.jsx
+│  │   └─ TrendingNavigation.jsx
+│  │
+│  ├─ buttons/
+│  │   ├─ ArrowIcon.jsx
+│  │   ├─ Logo.jsx
+│  │   ├─ ThemeToggle.jsx
+│  │   ├─ AccordionItem.jsx   
+│  │   └─ Icons.jsx           
+│  │
+│  └─ layout/
+│      ├─ BannerCarousel.jsx
+│      ├─ ProductCard.jsx
+│      └─ RecentlyViewed.jsx
+│     
+├─ hooks/
+│  ├─ productStore.js
+│  └─ useProduct.js
+│
 ├─ tailwind.config.js
 └─ postcss.config.mjs
 ```
@@ -104,5 +142,3 @@ npm run dev
 Serving at http://localhost:3000 (or another port)
 
 ---
-
-## 🧠 Key Code Concep

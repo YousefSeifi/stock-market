@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from "../../components/buttons/icons";
+import { ChevronDownIcon } from "../../components/buttons/Icons";
 
 const SizeSelector = ({ isOpen, onToggle }) => (
   <div className="relative">

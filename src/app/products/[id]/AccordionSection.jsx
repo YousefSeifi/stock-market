@@ -5,7 +5,7 @@ import {
   ReturnIcon,
   ShieldIcon,
   AuthenticityIcon,
-} from "../../components/buttons/icons";
+} from "../../components/buttons/Icons";
 
 const AccordionSection = () => {
   const [openAccordion, setOpenAccordion] = useState(null);

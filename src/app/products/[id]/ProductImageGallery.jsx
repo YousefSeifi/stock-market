@@ -2,18 +2,18 @@ import Image from "next/image";
 
 const ProductImageGallery = ({ images, activeTab, setActiveTab, loading }) => {
   if (loading)
-    return <div className="h-80 w-full bg-gray-200 animate-pulse rounded-lg" />;
+    return <div className="w-full bg-gray-200 animate-pulse rounded-lg" />;
 
   const currentImage = images[activeTab] || images[0];
 
   return (
     <div className="space-y-2">
-      <div className="relative h-80 w-full bg-gray-50 rounded-lg overflow-hidden">
+      <div className="relative w-full bg-gray-50 rounded-lg overflow-hidden">
         {currentImage && (
           <Image
             src={currentImage.src}
             alt={`Product Image ${currentImage.id}`}
-            width={300}
+            width={350}
             height={300}
             className="object-contain"
           />
@@ -29,7 +29,6 @@ const ProductImageGallery = ({ images, activeTab, setActiveTab, loading }) => {
             <Image
               src={img.src}
               alt=""
-            //   fill
               width={300}
               height={300}
               className="object-cover"

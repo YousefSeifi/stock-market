@@ -1,4 +1,4 @@
-import { HeartIcon, ShareIcon } from "../../components/buttons/icons";
+import { HeartIcon, ShareIcon } from "../../components/buttons/Icons";
 
 const UtilityButtons = () => (
   <div className="flex justify-end space-x-2">

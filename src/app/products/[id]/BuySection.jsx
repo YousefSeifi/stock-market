@@ -1,8 +1,8 @@
-const BuySection = () => (
+const BuySection = ({ price }) => (
   <div className="bg-blue-50 p-4 rounded-lg space-y-4">
     <div>
       <p className="text-sm text-gray-600">Buy Now for</p>
-      <p className="text-3xl font-bold">€95</p>
+      <p className="text-3xl font-bold">€{price}</p>
     </div>
 
     <div className="flex space-x-3">
@@ -15,7 +15,7 @@ const BuySection = () => (
     </div>
 
     <div className="mt-2 text-sm text-gray-600">
-      Pay over time with{" "}
+      Pay over time with
       <a href="#" className="text-blue-600 hover:underline">
         More Info
       </a>

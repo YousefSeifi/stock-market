@@ -1,4 +1,5 @@
 "use client";
+
 import { useProduct } from "../../hooks/useProduct";
 import { useProductStore } from "../../hooks/productStore";
 import ProductBreadcrumb from "./ProductBreadcrumb";
@@ -8,7 +9,7 @@ import BuySection from "./BuySection";
 import AccordionSection from "./AccordionSection";
 import UtilityButtons from "./UtilityButtons";
 
-export default function ProductClient() {
+export default function ProductClient({ product }) {
   const { productImages, loading, error } = useProduct();
   const {
     openAccordion,
@@ -35,7 +36,7 @@ export default function ProductClient() {
 
         {/* Right Column */}
         <div className="space-y-6">
-          <ProductBreadcrumb />
+          <ProductBreadcrumb product={product} />
           <UtilityButtons />
 
           <h1 className="text-2xl lg:text-3xl font-bold text-gray-900">
@@ -47,7 +48,7 @@ export default function ProductClient() {
             onToggle={() => toggleMenu("size")}
           />
 
-          <BuySection />
+          <BuySection price={product.price} />
 
           <AccordionSection
             openAccordion={openAccordion}
