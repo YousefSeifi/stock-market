@@ -1,6 +1,6 @@
 # 📘 README.md
 
-# 🏪 StockX‑Style Navigation & Mega Menu
+# 🏪 Stock-market :
 
 A fully interactive, responsive navigation header inspired by **StockX.com**, built with:
 
@@ -10,11 +10,19 @@ A fully interactive, responsive navigation header inspired by **StockX.com**, bu
 - Modern responsive UX patterns
 - Accessible HTML & interactive behavior
 
-🧩 This project focuses on building a **highly detailed navigation component** that closely mimics the structure and interactivity of StockX’s header and product category architecture.
+🧩 This project focuses on building a **highly detailed navigation system and dynamic product experience**, closely mimicking the structure and interactivity of StockX’s header and product architecture.
 
 ---
 
 ## 🚀 Features Implemented
+
+### ✅ Dynamic Product Navigation
+
+The website includes a product catalog where:
+
+- Products are displayed as interactive **product cards**
+- Each card dynamically routes the user to its own product detail page
+- Routing is handled using **Next.js Dynamic Routes**
 
 ---
 
